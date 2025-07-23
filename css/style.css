@@ -311,6 +311,7 @@ footer {
         transition: left 0.3s ease;
         box-shadow: 2px 0 10px rgba(0,0,0,0.1);
         overflow-y: auto;
+        z-index: 1002;
     }
 
     nav ul.menu-open {
@@ -349,7 +350,7 @@ footer {
         width: 100%;
         height: 100%;
         background-color: rgba(0,0,0,0.5);
-        z-index: 999;
+        z-index: 1001;
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -416,6 +417,39 @@ footer {
 
 .case-study-header nav ul li a:hover {
     color: var(--accent-color);
+}
+
+/* Corrigir visibilidade do botão hambúrguer no header azul */
+.case-study-header .menu-toggle {
+    color: #fff !important;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    padding: 8px;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.case-study-header .menu-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-50%) scale(1.05);
+}
+
+/* Melhorar contraste dos links no menu lateral */
+.case-study-header nav ul li a {
+    color: #fff !important;
+    font-weight: 500;
+}
+
+.case-study-header nav ul li a:hover {
+    background-color: var(--accent-color) !important;
+    color: white !important;
 }
 
 .case-study-main {
@@ -1499,5 +1533,86 @@ footer {
     
     .doc-icon {
         align-self: center;
+    }
+}
+
+/* Estilos para Seção do Ecossistema */
+.ecosystem-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.ecosystem-card {
+    background: #fff;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+}
+
+.ecosystem-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.15);
+    transform: translateY(-5px);
+}
+
+.ecosystem-icon {
+    font-size: 3em;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.ecosystem-card h4 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.4em;
+    font-weight: 600;
+}
+
+.ecosystem-card p {
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.ecosystem-card ul {
+    text-align: left;
+    list-style: none;
+    padding: 0;
+}
+
+.ecosystem-card ul li {
+    color: var(--text-color);
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.5;
+}
+
+.ecosystem-card ul li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+/* Responsividade para Ecossistema */
+@media (max-width: 768px) {
+    .ecosystem-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .ecosystem-card {
+        padding: 25px;
+    }
+    
+    .ecosystem-icon {
+        font-size: 2.5em;
     }
 }
