@@ -40,9 +40,33 @@ header {
     z-index: 1000;
 }
 
+nav {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Menu hambúrguer - escondido por padrão */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: var(--primary-color);
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    z-index: 1001;
+}
+
 nav ul {
     list-style: none;
     text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
 nav ul li {
@@ -55,10 +79,13 @@ nav ul li a {
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 4px;
 }
 
 nav ul li a:hover {
     color: var(--accent-color);
+    background-color: rgba(0, 123, 255, 0.1);
 }
 
 /* Seções Gerais */
@@ -265,8 +292,72 @@ footer {
         font-size: 1.8em;
     }
 
+    /* Menu hambúrguer ativo em tablets */
+    .menu-toggle {
+        display: block;
+    }
+
+    nav ul {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 280px;
+        height: 100vh;
+        background-color: var(--primary-color);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        padding-top: 80px;
+        transition: left 0.3s ease;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        overflow-y: auto;
+    }
+
+    nav ul.menu-open {
+        left: 0;
+    }
+
     nav ul li {
-        margin: 0 8px;
+        display: block;
+        margin: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    nav ul li:last-child {
+        border-bottom: none;
+    }
+
+    nav ul li a {
+        color: white;
+        display: block;
+        padding: 15px 20px;
+        text-align: left;
+        border-radius: 0;
+        transition: background-color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+        background-color: var(--accent-color);
+        color: white;
+    }
+
+    /* Overlay para fechar menu */
+    .menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .menu-overlay.active {
+        opacity: 1;
+        visibility: visible;
     }
 
     .hero-section {
@@ -280,9 +371,15 @@ footer {
 }
 
 @media (max-width: 480px) {
-    nav ul li {
-        display: block;
-        margin: 10px 0;
+    /* Menu hambúrguer ainda mais compacto em mobile */
+    nav ul {
+        width: 250px;
+        padding-top: 70px;
+    }
+
+    nav ul li a {
+        padding: 12px 15px;
+        font-size: 0.9em;
     }
 
     h1 {
