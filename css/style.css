@@ -424,6 +424,321 @@ footer {
     object-fit: contain;
 }
 
+/* Cards de estatísticas */
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-left: 4px solid var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-number {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.stat-label {
+    font-size: 0.95em;
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Timeline do projeto */
+.project-timeline {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.timeline-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.timeline-date {
+    background: var(--primary-color);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    min-width: 120px;
+    text-align: center;
+    margin-right: 30px;
+}
+
+.timeline-content {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-left: 3px solid var(--accent-color);
+}
+
+/* Badges de responsabilidades */
+.responsibility-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.responsibility-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    border-top: 3px solid var(--accent-color);
+}
+
+.responsibility-title {
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+.responsibility-list {
+    list-style: none;
+    padding: 0;
+}
+
+.responsibility-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+    position: relative;
+    padding-left: 20px;
+}
+
+.responsibility-list li:before {
+    content: "✓";
+    color: var(--accent-color);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+.responsibility-list li:last-child {
+    border-bottom: none;
+}
+
+/* Cards de resultados */
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.result-card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-top: 4px solid var(--primary-color);
+}
+
+.result-card h4 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.metric-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.metric-item:last-child {
+    border-bottom: none;
+}
+
+.metric-value {
+    font-weight: bold;
+    color: var(--accent-color);
+    font-size: 1.1em;
+}
+
+/* Progress bars */
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #e9ecef;
+    border-radius: 4px;
+    margin: 10px 0;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    border-radius: 4px;
+    transition: width 0.8s ease;
+}
+
+/* Cards de prioridade */
+.priority-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.priority-card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-left: 6px solid;
+}
+
+.priority-zero {
+    border-left-color: #dc3545;
+}
+
+.priority-one {
+    border-left-color: #ffc107;
+}
+
+.priority-two {
+    border-left-color: #28a745;
+}
+
+.priority-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.priority-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+    font-size: 0.85em;
+    margin-right: 15px;
+}
+
+.priority-zero .priority-badge {
+    background: #dc3545;
+}
+
+.priority-one .priority-badge {
+    background: #ffc107;
+    color: #000;
+}
+
+.priority-two .priority-badge {
+    background: #28a745;
+}
+
+.priority-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.priority-item {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 3px solid var(--primary-color);
+}
+
+.priority-item strong {
+    color: var(--primary-color);
+}
+
+/* Citações destacadas */
+.highlight-quote {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin: 40px auto;
+    max-width: 800px;
+    text-align: center;
+    font-size: 1.2em;
+    font-style: italic;
+    position: relative;
+}
+
+.highlight-quote:before {
+    content: '"';
+    font-size: 4em;
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    opacity: 0.3;
+}
+
+/* Seção de metodologia melhorada */
+.methodology-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.methodology-step {
+    background: white;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    position: relative;
+    border-top: 4px solid var(--primary-color);
+}
+
+.step-number {
+    background: var(--primary-color);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin: 0 auto 15px auto;
+}
+
+.step-title {
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
 /* Footer específico para case study */
 .case-study-main footer p {
     margin-bottom: 10px;
@@ -445,6 +760,47 @@ footer {
     
     .image-gallery img {
         width: 100%;
+    }
+    
+    .stats-container {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+    }
+    
+    .stat-number {
+        font-size: 2em;
+    }
+    
+    .timeline-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .timeline-date {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    
+    .responsibility-grid,
+    .results-grid,
+    .methodology-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .priority-items {
+        grid-template-columns: 1fr;
+    }
+    
+    .highlight-quote {
+        padding: 20px;
+        font-size: 1.1em;
+    }
+    
+    .highlight-quote:before {
+        font-size: 3em;
+        left: 15px;
+        top: 5px;
     }
 }
 
