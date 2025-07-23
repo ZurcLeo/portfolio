@@ -1338,3 +1338,90 @@ footer {
         font-size: 1.2em;
     }
 }
+
+/* Estilos para Cards de Documentação */
+.documentation-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+}
+
+.doc-link-card {
+    background: #fff;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    padding: 25px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.doc-link-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.15);
+    transform: translateY(-3px);
+}
+
+.doc-icon {
+    font-size: 2.5em;
+    color: var(--primary-color);
+    flex-shrink: 0;
+}
+
+.doc-content {
+    flex: 1;
+}
+
+.doc-content h4 {
+    color: var(--text-color);
+    margin-bottom: 8px;
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+.doc-content p {
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    line-height: 1.5;
+    font-size: 0.95em;
+}
+
+.doc-content .btn-secondary {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.doc-content .btn-secondary:hover {
+    background-color: #0056b3;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+/* Responsividade para Cards de Documentação */
+@media (max-width: 768px) {
+    .documentation-links {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .doc-link-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .doc-icon {
+        align-self: center;
+    }
+}
