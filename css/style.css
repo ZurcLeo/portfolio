@@ -1341,34 +1341,81 @@ footer {
 
 /* Estilos para Cards de Documentação */
 .documentation-links {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-    margin: 30px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px; /* Espaçamento entre os cards */
+    margin-top: 40px;
+    padding: 0 20px; /* Padding nas laterais para telas pequenas */
 }
 
 .doc-link-card {
-    background: #fff;
-    border: 2px solid #e9ecef;
-    border-radius: 12px;
-    padding: 25px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+    background-color: #ffffff;
+    border-radius: 12px; /* Cantos mais arredondados */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); /* Sombra mais suave e proeminente */
+    padding: 30px;
+    width: 100%; /* Largura total em mobile */
+    max-width: 360px; /* Largura máxima para desktop */
     display: flex;
-    align-items: flex-start;
-    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transição para hover */
 }
 
 .doc-link-card:hover {
-    border-color: var(--primary-color);
-    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.15);
-    transform: translateY(-3px);
+    transform: translateY(-8px); /* Efeito de "levantar" ao passar o mouse */
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15); /* Sombra mais forte ao hover */
+}
+
+.doc-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .doc-icon {
     font-size: 2.5em;
     color: var(--primary-color);
     flex-shrink: 0;
+}
+
+.doc-icon-modern {
+    display: block;
+    width: 60px;
+    height: 60px;
+    background-color: var(--primary-color); /* Cor de fundo do ícone */
+    border-radius: 50%; /* Formato de círculo */
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.doc-icon-modern::before {
+    content: '📚'; /* Conteúdo do ícone (emoji ou unicode) */
+    font-size: 30px;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1; /* Garante alinhamento vertical */
+}
+
+/* Título do Card */
+.doc-title {
+    font-size: 1.6em; /* Aumenta o tamanho do título */
+    color: var(--primary-color);
+    margin-top: 0; /* Remove margem superior padrão do h4 */
+    margin-bottom: 10px;
+}
+
+/* Descrição do Card */
+.doc-description {
+    font-size: 1.05em;
+    color: var(--text-color);
+    margin-bottom: 25px;
+    line-height: 1.5;
 }
 
 .doc-content {
@@ -1406,6 +1453,35 @@ footer {
     background-color: #0056b3;
     transform: translateY(-1px);
     box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+/* Botão de Download */
+.btn-download {
+    display: inline-flex; /* Permite alinhar texto e ícone */
+    align-items: center;
+    justify-content: center;
+    background-color: var(--accent-color); /* Cor verde para download */
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-download:hover {
+    background-color: #218838; /* Escurece no hover */
+    transform: translateY(-2px); /* Pequeno efeito de "pular" */
+}
+
+.btn-download .btn-text {
+    margin-right: 8px; /* Espaço entre o texto e a seta */
+}
+
+.btn-download .btn-arrow {
+    font-size: 1.2em; /* Tamanho da seta */
+    transform: translateY(1px); /* Ajuste vertical para a seta */
 }
 
 /* Responsividade para Cards de Documentação */
