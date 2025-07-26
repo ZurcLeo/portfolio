@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise: Teste vs Matriz CSD por Ano Escolar</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .section {
+            margin: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            font-size: 12px;
+        }
+        
+        th {
+            background-color: #4a5568;
+            color: white;
+            padding: 10px 8px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 11px;
+            vertical-align: top;
+        }
+        
+        td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+            font-size: 11px;
+        }
+        
+        tr:hover {
+            background-color: #f7fafc;
+        }
+        
+        .status {
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-size: 10px;
+            font-weight: bold;
+            text-align: center;
+            white-space: nowrap;
+            display: inline-block;
+            margin: 1px;
+        }
+        
+        .endossa {
+            background-color: #48bb78;
+            color: white;
+        }
+        
+        .refuta {
+            background-color: #e53e3e;
+            color: white;
+        }
+        
+        .parcialmente {
+            background-color: #ed8936;
+            color: white;
+        }
+        
+        .nao-abordado {
+            background-color: #718096;
+            color: white;
+        }
+        
+        .nao-testado {
+            background-color: #cbd5e0;
+            color: #2d3748;
+        }
+        
+        .section-title {
+            color: #2d3748;
+            border-bottom: 3px solid #4299e1;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+        
+        .item-id {
+            font-weight: bold;
+            color: #4a5568;
+            width: 30px;
+        }
+        
+        .evidencia {
+            background-color: #e6fffa;
+            border-left: 3px solid #38b2ac;
+            padding: 6px 8px;
+            margin: 2px 0;
+            border-radius: 3px;
+            font-style: italic;
+            font-size: 10px;
+        }
+        
+        .evidencia-problema {
+            background-color: #e6fffa;
+            border-left: 3px solid #b27138;
+            padding: 6px 8px;
+            margin: 2px 0;
+            border-radius: 3px;
+            font-style: italic;
+            font-size: 10px;
+        }
+
+        .resumo {
+            background-color: #f0fff4;
+            border: 2px solid #48bb78;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .grid-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            background: #f8f9fa;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .year-column {
+            width: 14%;
+            min-width: 140px;
+        }
+        
+        .hypothesis-column {
+            width: 20%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Análise: Matriz CSD por Ano Escolar</h1>
+            <p>Validação das Certezas, Suposições e Dúvidas por ano letivo</p>
+        </div>
+        
+        <div class="resumo">
+            <h3>📊 RESUMO EXECUTIVO</h3>
+            <p><strong>Análise comparativa entre diferentes anos escolares.</strong> Os testes realizados no 1º e 2º anos fornecem insights sobre como a idade e maturidade dos alunos impactam na interação com o aplicativo.</p>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">📋 SUPOSIÇÕES - VALIDAÇÃO POR ANO ESCOLAR</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th class="hypothesis-column">Suposição</th>
+                        <th class="year-column">1º Ano</th>
+                        <th class="year-column">2º Ano</th>
+                        <th class="year-column">3º Ano</th>
+                        <th class="year-column">4º Ano</th>
+                        <th class="year-column">5º Ano</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="item-id">1</td>
+                        <td>O app pode não estar proposto para salas com muitos alunos</td>
+                        <td>
+                            <span class="status parcialmente">PARCIALMENTE</span>
+                            <div class="evidencia">Teste com 7 alunos. Individual.</div>
+                            <div class="evidencia">Ambiente barulhento, com predominância do áudio repetindo o enunciado das questões.</div>
+                            <div class="evidencia">Vários alunos clicaram para ouvir o enunciado da mesma questão mais de uma vez.</div>
+                            <div class="evidencia">Algumas crianças exigiram mais atenção nas atividades pedagógicas.</div>
+                            <div class="evidencia">Resultados individuais por criança capturados com precisão - cada criança jogou com seu próprio perfil.</div>
+
+                        </td>
+                        <td>
+                            <span class="status endossa">ENDOSSA</span>
+                            <div class="evidencia">19 alunos divididos em 5 grupos.</div>
+                            <div class="evidencia">Ambiente muito barulhento, o áudio repetindo o enunciado das questões, misturado às crianças interagindo entre si e com a professora.</div>
+                            <div class="evidencia">Várias crianças acionando a professora simultaneamente.</div>
+                            <div class="evidencia">A professora precisou intervir em diversos momentos para democratizar o aparelho entre todos do grupo.</div>
+                            <div class="evidencia-problema">Resultados individuais por criança não capturados com precisão - cada grupo foi indicado por uma letra, Grupo A, Grupo B...</div>
+
+                        </td>
+                        <td>
+                            <span class="status parcialmente">PARCIALMENTE</span>
+                            <div class="evidencia">13 alunos divididos em 5 duplas e 1 trio.</div>
+                            <div class="evidencia">Ambiente muito barulhento, havia algum ruido do audio dos enunciados, no entanto, o ruído maior aqui era das crianças interagindo entre si e celebrando suas conquistas quando faziam um gol.</div>
+                            <div class="evidencia">Professora como mediadora pedagógica</div>
+                            <div class="evidencia">Menos conflitos observados.</div>
+                            <div class="evidencia-problema">Resultados individuais por criança não capturados com precisão - cada dupla/trio foi indicado por uma letra, Dupla A, Dupla B, Trio A...</div>
+                        </td>
+                        <td>
+                            <span class="status refuta">REFUTA</span>
+                            <div class="evidencia">15 alunos divididos em 5 trios.</div>
+                            <div class="evidencia">Ambiente menos barulhento, quase não houve ruído do audio dos enunciados e das crianças interagindo entre si e celebrando, suas conquistas quando faziam um gol.</div>
+                            <div class="evidencia">Trios colaboram e se pressionam para não errarem - querem o troféu</div>
+                            <div class="evidencia">Os alunos criaram dinâmicas diferentes para o jogo - alguns grupos criaram dinâmicas de cooperação, outros de competição.</div>
+                            <div class="evidencia">A negociação e a habilidade de convencimento foram observadas em vários momentos, pos trios precisavam entrar em acordo para responderem as atividades.</div>
+                            <div class="evidencia">Menos necessidade de suporte direto</div>
+                            <div class="evidencia-problema">Resultados individuais por criança não capturados com precisão - cada trio foi indicado por uma letra, Trio A, Trio B...</div>
+                        </td>
+                        <td>
+                            <span class="status refuta">REFUTA</span>
+                            <div class="evidencia">10 alunos divididos em 5 duplas.</div>
+                            <div class="evidencia">Ambiente menos barulhento, não houve ruído do audio dos enunciados. As crianças negociando entre si e celebrando, um pouco mais contidos, suas conquistas quando faziam um gol, foi o ruído mais comunm.</div>
+
+                            <div class="evidencia">Grupos divergiam em opiniões e precisavam entrar em acordo</div>
+
+                            <div class="evidencia">A negociação e a habilidade de convencimento foram observadas em vários momentos, pos trios precisavam entrar em acordo para responderem as atividades.</div>
+                            <div class="evidencia-problema">Resultados individuais por criança não capturados com precisão - cada dupla foi indicado por uma letra, Dupla A, Dupla B...</div>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="item-id">2</td>
+                        <td>Professor pode não controlar interação dos alunos com celulares</td>
+                        <td>
+                            <span class="status endossa">ENDOSSA</span>
+                            <div class="evidencia">Necessário "acordo" com a turma e regras claras</div>
+                            <div class="evidencia-problema">Problema Identificado: Alguns alunos exploram funciionalidades do celular, como câmera, gravador, etc. Um indício de tédio? </div>
+
+                        </td>
+                        <td>
+                            <span class="status endossa">ENDOSSA</span>
+                            <div class="evidencia">Professora teve que repreender alunos que saíam dos grupos</div>
+                            <div class="evidencia">Criou sistema de capitães para controle</div>
+                            <div class="evidencia">Em alguns momentos a professora interveio para dar acesso ao celular para todos do grupo.</div>
+
+                        </td>
+                        <td>
+                            <span class="status endossa">ENDOSSA</span>
+                            <div class="evidencia">Grupos estagnaram jogando diversas vezes a mesma liga até conseguir troféu</div>
+                            <div class="evidencia-problema">Problema Identficado: moedas acumuladas em atividades já "pagas"</div>
+
+                        </td>
+                        <td>
+                            <span class="status endossa">ENDOSSA</span>
+                            <div class="evidencia">Foram registrados momentos em que alguns alunos fizeram selfies e tentaram acessar o youtube.</div>
+                            <div class="evidencia">Grupos estagnaram jogando diversas vezes a mesma liga até conseguir troféu</div>
+                            <div class="evidencia">Alunos mais autônomos com tecnologia</div>
+
+                        </td>
+                        <td>
+                            <span class="status refuta">REFUTA</span>
+                            <div class="evidencia">Exploração orgânica e intuitiva</div>
+                            <div class="evidencia">O foco ficou no aplicativo e no objetivo de avançar o mais rápido que podiam.</div>
+                            <div class="evidencia">Alunos mais autônomos com tecnologia</div>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="item-id">3</td>
+                        <td>Alunos podem precisar de suporte para atividades</td>
+                        <td>
+                            <span class="status endossa">ENDOSSA</span>
+                            <div class="evidencia">Inicialmente confusos.</div>
+                            <div class="evidencia">Tem medo de errar.</div>
+                            <div class="evidencia">A maioria espera por comando da professora para prosseguir.</div>
+                            <div class="evidencia">Ficam mais autônomos a medida que percebem que a professora não está lá para "dizer o que fazer" ou "apontar a opção correta".</div>
+
+                        </td>
+                        <td>
+                            <span class="status endossa">ENDOSSA</span>
+                            <div class="evidencia">Foi identificado em 2 grupos alguma dificuldade em receber respostas colaborativas de um colega de grupo.</div>
+                            <div class="evidencia">Mais competitivos entre si, dentro dos próprios grupos.</div>
+                            <div class="evidencia">Dificuldade em compartilhar celular</div>
+                            <div class="evidencia">Mais de um grupo chamou a professora mais de 1 vez para ajudá-los.</div>
+
+                        </td>
+                        <td>
+                            <span class="status endossa">ENDOSSA</span>
+                            <div class="evidencia">Alunos já sabem lidar com tecnologia</div>
+                            <div class="evidencia">Divisão em grupos autogerenciada</div>
+                            <div class="evidencia">A maioria pediu ajuda a professora pelo menos 1 vez.</div>
+
+                        </td>
+                        <td>
+                            <span class="status endossa">ENDOSSA</span>
+                            <div class="evidencia">Exploração orgânica sem preparação específica</div>
+                            <div class="evidencia">Alguns alunos interagiam com outros grupos para saber o progresso.</div>
+                            <div class="evidencia">Professora como mediadora pedagógica</div>
+
+                        </td>
+                        <td>
+                            <span class="status endossa">ENDOSSA</span>
+                            <div class="evidencia">Grupos celebravam ao avançar nas ligas</div>
+                            <div class="evidencia">Professora como mediadora pedagógica</div>
+                            <div class="evidencia">Competição respeitosa e saudável pelo troféu</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="item-id">4</td>
+                        <td>Aluno pode acessar perfil de outro sem intenção</td>
+                        <td><span class="status nao-abordado">NÃO ABORDADO</span></td>
+                        <td><span class="status nao-abordado">NÃO ABORDADO</span></td>
+                        <td><span class="status nao-abordado">NÃO ABORDADO</span></td>
+                        <td><span class="status nao-abordado">NÃO ABORDADO</span></td>
+                        <td><span class="status nao-abordado">NÃO ABORDADO</span></td>
+
+                    </tr>
+                    <tr>
+                        <td class="item-id">5</td>
+                        <td>Alunos podem recomeçar Liga sem finalizar</td>
+                        <td>
+                            <span class="status endossa">ENDOSSA</span>
+                            <div class="evidencia">6 dos 7 alunos refizeram várias vezes a pré-temporada</div>
+                        </td>
+                        <td>
+                            <span class="status endossa">ENDOSSA</span>
+                            <div class="evidencia">Maioria dos alunos repetiu pré-temporada diversas vezes</div>
+                            <div class="evidencia-problema">Problema Identificao: próximas ligas não ficavam selecionadas após conclusão bem-sucedida.</div>
+                        </td>
+                        <td>
+                            <span class="status endossa">ENDOSSA</span>
+                            <div class="evidencia">Maioria alunos avançaram rapidamente pela pré-temporada.</div>
+                            <div class="evidencia">Alguns dos alunos repetiram alguma liga ao cometer algum erro.</div>
+                            <div class="evidencia">Nenhum aluno recebeu um troféu.</div>
+                        </td>
+                        <td>
+                            <span class="status endossa">ENDOSSA</span>
+                            <div class="evidencia">Maioria alunos avançaram rapidamente pela pré-temporada e regional.</div>
+                            <div class="evidencia">Vários alunos repetiu alguma liga ao cometer algum erro.</div>
+                            <div class="evidencia">Nenhum aluno recebeu um troféu.</div>
+                        </td>
+                        <td>
+                            <span class="status endossa">ENDOSSA</span>
+                            <div class="evidencia">Muitos alunos aqui conseguiram troféus nas Temporadas 1 e 2.</div>
+                            <div class="evidencia">Para esses alunos progredir na Temporada 1 é muito fácil.</div>
+                            <div class="evidencia">Não há mecanismos que testem ou nivelem o aluno para iniciar a partir do ponto que for necessário ao sdeu aprendizado.</div>
+
+
+                        </td>                    </tr>
+                    <tr>
+                        <td class="item-id">6</td>
+                        <td>Internet da escola pode ser ruim</td>
+                        <td>
+                            <span class="status nao-abordado">NÃO ABORDADO</span>
+                            <div class="evidencia">Nenhum aluno recebeu um troféu.</div>
+
+                        </td>
+                        
+                        <td>
+                            <span class="status parcialmente">OBSERVADO</span>
+                            <div class="evidencia">Algumas imagens demoraram muito a carregar</div>
+                            <div class="evidencia">A sala utilizada fica no segundo andar, longe da secretaria, que é de onde a internet é roteada.</div>
+
+                        </td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                    </tr>
+                    <tr>
+                        <td class="item-id">7</td>
+                        <td>Nem todos têm celular</td>
+                        <td>
+                            <span class="status endossa">ENDOSSA</span>
+                            <div class="evidencia">Apenas 7 aparelhos para 11 crianças</div>
+                            <div class="evidencia">Os aparelhos foram doados a escola pelo Instituto.</div>
+
+                        </td>
+                        <td>
+                            <span class="status endossa">ENDOSSA</span>
+                            <div class="evidencia">13 alunos em duplas/trio compartilhando</div>
+                        </td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                    </tr>
+                    <tr>
+                        <td class="item-id">8</td>
+                        <td>Professor pode ter dificuldade com nova tecnologia</td>
+                        <td>
+                            <span class="status refuta">REFUTA</span>
+                            <div class="evidencia">Professora conduziu teste com sucesso</div>
+                        </td>
+                        <td>
+                            <span class="status refuta">REFUTA</span>
+                            <div class="evidencia">Questão tecnológica não se aplicou a nenhuma dupla/trio</div>
+                            <div class="evidencia">Alunos mais autônomos com tecnologia</div>
+                        </td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                    </tr>
+                    <tr>
+                        <td class="item-id">9</td>
+                        <td>Alunos têm autonomia para jogar e aprender com erros</td>
+                        <td>
+                            <span class="status endossa">ENDOSSA</span>
+                            <div class="evidencia">Descobriram recursos sozinhos após orientação</div>
+                        </td>
+                        <td>
+                            <span class="status endossa">ENDOSSA FORTEMENTE</span>
+                            <div class="evidencia">Exploração orgânica e intuitiva</div>
+                            <div class="evidencia">Alunos mais autônomos com tecnologia</div>
+                        </td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                    </tr>
+                    <tr>
+                        <td class="item-id">10</td>
+                        <td>Alunos dos anos iniciais podem não ter autonomia</td>
+                        <td>
+                            <span class="status parcialmente">PARCIALMENTE REFUTA</span>
+                            <div class="evidencia">Ganharam autonomia após orientação inicial</div>
+                        </td>
+                        <td>
+                            <span class="status refuta">REFUTA</span>
+                            <div class="evidencia">Alunos já sabem lidar com tecnologia</div>
+                            <div class="evidencia">Divisão em grupos autogerenciada</div>
+                        </td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                    </tr>
+                    <tr>
+                        <td class="item-id">11</td>
+                        <td>Regras de avanço nas Ligas não estão claras</td>
+                        <td>
+                            <span class="status endossa">ENDOSSA</span>
+                            <div class="evidencia">Não há uma indicação clara de que o jogador pode avançar para a próxima liga.</div>
+                            <div class="evidencia">Observado que alguns alunos repetem a mesma liga, mesmo quando já desbloquearam a próxima.</div>
+                        </td>
+                        <td>
+                            <span class="status endossa">ENDOSSA</span>
+                            <div class="evidencia">Não há uma indicação clara de que o jogador pode avançar para a próxima liga.</div>
+                            <div class="evidencia">Observado que alguns alunos repetem a mesma liga, mesmo quando já desbloquearam a próxima.</div>
+                        </td>
+                        <td>
+                            <span class="status endossa">ENDOSSA</span>
+                            <div class="evidencia">Não há uma indicação clara de que o jogador pode avançar para a próxima liga.</div>
+                            <div class="evidencia">Observado que alguns alunos repetem a mesma liga, mesmo quando já desbloquearam a próxima.</div>
+                        </td>
+                        <td>
+                            <span class="status endossa">ENDOSSA</span>
+                            <div class="evidencia">Não há uma indicação clara de que o jogador pode avançar para a próxima liga.</div>
+                            <div class="evidencia">Observado que alguns alunos repetem a mesma liga, mesmo quando já desbloquearam a próxima.</div>
+                        </td>
+                        <td>
+                            <span class="status endossa">ENDOSSA</span>
+                            <div class="evidencia">Não há uma indicação clara de que o jogador pode avançar para a próxima liga.</div>
+                            <div class="evidencia">Observado que alguns alunos repetem a mesma liga, mesmo quando já desbloquearam a próxima.</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="item-id">12</td>
+                        <td>Questões de privacidade dos alunos</td>
+                        <td><span class="status nao-abordado">NÃO ABORDADO</span></td>
+                        <td><span class="status nao-abordado">NÃO ABORDADO</span></td>
+                        <td><span class="status nao-abordado">NÃO ABORDADO</span></td>
+                        <td><span class="status nao-abordado">NÃO ABORDADO</span></td>
+                        <td><span class="status nao-abordado">NÃO ABORDADO</span></td>
+                    </tr>
+                    <tr>
+                        <td class="item-id">13</td>
+                        <td>É possível receber troféu em qualquer ano escolar</td>
+                        <td>
+                            <span class="status refuta">REFUTA</span>
+                            <div class="evidencia">Nenhum aluno recebeu troféu.</div>
+                        </td>
+                        <td>
+                            <span class="status parcialmente">OBSERVAR</span>
+                            <div class="evidencia">1 grupo recebeu troféu.</div>
+                        </td>                        
+                        <td>
+                            <span class="status refuta">REFUTA</span>
+                            <div class="evidencia">Nenhuma dupla recebeu troféu.</div>
+                        </td>  
+                        <td>
+                            <span class="status endossa">ENDOSSA</span>
+                            <div class="evidencia">5 grupos receberam troféu.</div>
+                        </td>  
+                        <td>
+                            <span class="status endossa">ENDOSSA</span>
+                            <div class="evidencia">5 grupos receberam troféu.</div>
+                        </td> 
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">✅ CERTEZAS - VALIDAÇÃO POR ANO ESCOLAR</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th class="hypothesis-column">Certeza</th>
+                        <th class="year-column">1º Ano</th>
+                        <th class="year-column">2º Ano</th>
+                        <th class="year-column">3º Ano</th>
+                        <th class="year-column">4º Ano</th>
+                        <th class="year-column">5º Ano</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="item-id">C1</td>
+                        <td>App funciona como recurso auxiliar da educação</td>
+                        <td>
+                            <span class="status endossa">ENDOSSA FORTEMENTE</span>
+                            <div class="evidencia">Teste bem-sucedido em sala</div>
+                        </td>
+                        <td>
+                            <span class="status endossa">ENDOSSA FORTEMENTE</span>
+                            <div class="evidencia">Exploração orgânica sem preparação específica</div>
+                            <div class="evidencia">Professora como mediadora pedagógica</div>
+                        </td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                    </tr>
+                    <tr>
+                        <td class="item-id">C2</td>
+                        <td>Alunos preferem realizar atividades usando o Base</td>
+                        <td>
+                            <span class="status endossa">ENDOSSA</span>
+                            <div class="evidencia">Engajamento natural dos alunos</div>
+                        </td>
+                        <td>
+                            <span class="status endossa">ENDOSSA</span>
+                            <div class="evidencia">Exploração orgânica do app pelos alunos</div>
+                        </td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                    </tr>
+                    <tr>
+                        <td class="item-id">C3</td>
+                        <td>Alunos interagem competindo</td>
+                        <td>
+                            <span class="status endossa">ENDOSSA FORTEMENTE</span>
+                            <div class="evidencia">Clima de competição observado</div>
+                        </td>
+                        <td>
+                            <span class="status endossa">ENDOSSA FORTEMENTE</span>
+                            <div class="evidencia">Grupos celebravam ao avançar nas ligas</div>
+                            <div class="evidencia">Competição respeitosa e saudável pelo troféu</div>
+                        </td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                    </tr>
+                    <tr>
+                        <td class="item-id">C4</td>
+                        <td>Professor/responsável necessário para anos iniciais</td>
+                        <td>
+                            <span class="status endossa">ENDOSSA</span>
+                            <div class="evidencia">Orientação essencial durante todo processo</div>
+                        </td>
+                        <td>
+                            <span class="status endossa">ENDOSSA</span>
+                            <div class="evidencia">Professora equilibrou duplas por conhecimento dos alunos</div>
+                            <div class="evidencia">Mediação pedagógica efetiva</div>
+                        </td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                    </tr>
+                    <tr>
+                        <td class="item-id">C5</td>
+                        <td>Cadastro muito extenso</td>
+                        <td>
+                            <span class="status endossa">ENDOSSA</span>
+                            <div class="evidencia">Listado como melhoria necessária</div>
+                        </td>
+                        <td>
+                            <span class="status nao-abordado">NÃO ABORDADO</span>
+                        </td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                    </tr>
+                    <tr>
+                        <td class="item-id">C6</td>
+                        <td>App deveria fornecer relatórios ao professor</td>
+                        <td>
+                            <span class="status endossa">ENDOSSA FORTEMENTE</span>
+                            <div class="evidencia">Professor sem visibilidade do progresso</div>
+                        </td>
+                        <td><span class="status nao-abordado">NÃO ABORDADO</span></td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">❓ DÚVIDAS - VALIDAÇÃO POR ANO ESCOLAR</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th class="hypothesis-column">Dúvida</th>
+                        <th class="year-column">1º Ano</th>
+                        <th class="year-column">2º Ano</th>
+                        <th class="year-column">3º Ano</th>
+                        <th class="year-column">4º Ano</th>
+                        <th class="year-column">5º Ano</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="item-id">D1</td>
+                        <td>Alunos podem ser motivados por campeonatos e torneios?</td>
+                        <td>
+                            <span class="status endossa">ENDOSSA FORTEMENTE</span>
+                            <div class="evidencia">Gerou insights sobre Times, Seleções e Copas</div>
+                        </td>
+                        <td>
+                            <span class="status endossa">ENDOSSA FORTEMENTE</span>
+                            <div class="evidencia">Grupos interagiam para saber progresso</div>
+                            <div class="evidencia">Competição saudável pelo troféu</div>
+                        </td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                    </tr>
+                    <tr>
+                        <td class="item-id">D2</td>
+                        <td>Professores precisam de recursos de controle/acesso?</td>
+                        <td>
+                            <span class="status endossa">ENDOSSA FORTEMENTE</span>
+                            <div class="evidencia">Demandas específicas para dashboard</div>
+                        </td>
+                        <td><span class="status nao-abordado">NÃO ABORDADO</span></td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                        <td><span class="status nao-testado">NÃO TESTADO</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="section">
+            <div class="grid-stats">
+                <div class="stat-card">
+                    <strong>1º Ano</strong><br>
+                    <span style="font-size: 18px; color: #48bb78;">7 alunos</span><br>
+                    <small>Teste individual</small>
+                </div>
+                <div class="stat-card">
+                    <strong>2º Ano</strong><br>
+                    <span style="font-size: 18px; color: #4299e1;">19 alunos</span><br>
+                    <small>5 grupos</small>
+                </div>
+                <div class="stat-card">
+                    <strong>3º Ano</strong><br>
+                    <span style="font-size: 18px; color: #9f7aea;">13 alunos</span><br>
+                    <small>Duplas/Trio</small>
+                </div>
+                <div class="stat-card">
+                    <strong>4º Ano</strong><br>
+                    <span style="font-size: 18px; color: #cbd5e0;">Não testado</span><br>
+                    <small>Pendente</small>
+                </div>
+                <div class="stat-card">
+                    <strong>5º Ano</strong><br>
+                    <span style="font-size: 18px; color: #cbd5e0;">Não testado</span><br>
+                    <small>Pendente</small>
+                </div>
+            </div>
+        </div>
+        
+        <div class="resumo">
+            <h3>🎯 PRINCIPAIS DIFERENÇAS ENTRE ANOS</h3>
+            <p><strong>1º Ano:</strong> Necessitam mais orientação individual, mas desenvolvem autonomia rapidamente. Teste controlado mostrou bons resultados.</p>
+            <p><strong>2º Ano:</strong> Maior capacidade de trabalho em grupo, mas ambiente mais desafiador para controle. Necessidade crítica de ferramentas para professor. Sistema de capitães emergiu como solução.</p>
+            <p><strong>3º Ano:</strong> Maior autonomia tecnológica com 13 alunos em duplas/trio. Grupos autogerenciados com competição saudável. Identificado problema sistêmico: acúmulo excessivo de moedas em atividades repetidas.</p>
+            <p><strong>Próximos testes (4º-5º anos):</strong> Expectativa de maior autonomia e menor necessidade de mediação constante.</p>
+        </div>
+    </div>
+</body>
+</html>
